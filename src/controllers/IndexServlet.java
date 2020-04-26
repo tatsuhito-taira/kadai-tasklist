@@ -40,12 +40,12 @@ public class IndexServlet extends HttpServlet {
             page = Integer.parseInt(request.getParameter("page"));
         } catch(NumberFormatException e) {}
 
-        List<Message> messages = em.createNamedQuery("getAllMessages", Message.class)
+        List<Message> messages = em.createNamedQuery("getAlltasks", Message.class)
                                    .setFirstResult(15 * (page - 1))
                                    .setMaxResults(15)
                                    .getResultList();
 
-        long messages_count = (long)em.createNamedQuery("getMessagesCount", Long.class)
+        long messages_count = (long)em.createNamedQuery("gettasksCount", Long.class)
                                       .getSingleResult();
 
         em.close();
