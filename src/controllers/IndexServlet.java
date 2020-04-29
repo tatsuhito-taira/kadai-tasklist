@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import models.Message;
+import models.Task;
 import utils.DBUtil;
 
 /**
@@ -40,7 +40,7 @@ public class IndexServlet extends HttpServlet {
             page = Integer.parseInt(request.getParameter("page"));
         } catch(NumberFormatException e) {}
 
-        List<Message> messages = em.createNamedQuery("getAlltasks", Message.class)
+        List<Task> Task = em.createNamedQuery("getAlltasks", Task.class)
                                    .setFirstResult(15 * (page - 1))
                                    .setMaxResults(15)
                                    .getResultList();
@@ -50,7 +50,7 @@ public class IndexServlet extends HttpServlet {
 
         em.close();
 
-        request.setAttribute("messages", messages);
+        request.setAttribute("Task", Task);
         request.setAttribute("messages_count", messages_count);
         request.setAttribute("page", page);
 

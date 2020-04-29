@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import models.Message;
-import models.validators.MessageValidator;
+import models.Task;
+import models.validators.TaskValidator;
 import utils.DBUtil;
 
 /**
@@ -39,10 +39,7 @@ public class UpdateServlet extends HttpServlet {
         if(_token != null && _token.equals(request.getSession().getId())) {
             EntityManager em = DBUtil.createEntityManager();
 
-            Message m = em.find(Message.class, (Integer)(request.getSession().getAttribute("message_id")));
-
-            String title = request.getParameter("title");
-            m.setTitle(title);
+            Task m = em.find(Task.class, (Integer)(request.getSession().getAttribute("Task_id")));
 
             String content = request.getParameter("content");
             m.setContent(content);
@@ -50,7 +47,7 @@ public class UpdateServlet extends HttpServlet {
             Timestamp currentTime = new Timestamp(System.currentTimeMillis());
             m.setUpdated_at(currentTime);
 
-            List<String> errors = MessageValidator.validate(m);
+            List<String> errors = TaskValidator.validate(m);
             if(errors.size() > 0) {
                 em.close();
                 request.setAttribute("_token", request.getSession().getId());

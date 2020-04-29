@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import models.Message;
+import models.Task;
 import utils.DBUtil;
 
 /**
@@ -34,7 +34,7 @@ public class DestroyServlet extends HttpServlet {
         String _token = (String)request.getParameter("_token");
         if(_token != null && _token.equals(request.getSession().getId())) {
             EntityManager em = DBUtil.createEntityManager();
-            Message m = em.find(Message.class, (Integer)(request.getSession().getAttribute("message_id")));
+            Task m = em.find(Task.class, (Integer)(request.getSession().getAttribute("Task_id")));
             em.getTransaction().begin();
             em.remove(m);
             em.getTransaction().commit();
