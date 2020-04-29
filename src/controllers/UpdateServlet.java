@@ -51,7 +51,7 @@ public class UpdateServlet extends HttpServlet {
             if(errors.size() > 0) {
                 em.close();
                 request.setAttribute("_token", request.getSession().getId());
-                request.setAttribute("message", m);
+                request.setAttribute("Task", m);
                 request.setAttribute("errors", errors);
                 RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/messages/edit.jsp");
                 rd.forward(request, response);
@@ -60,7 +60,7 @@ public class UpdateServlet extends HttpServlet {
                 em.getTransaction().commit();
                 request.getSession().setAttribute("flush", "更新が完了しました。");
                 em.close();
-                request.getSession().removeAttribute("message_id");
+                request.getSession().removeAttribute("Task_id");
                 response.sendRedirect(request.getContextPath() + "/index");
             }
         }

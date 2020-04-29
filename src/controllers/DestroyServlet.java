@@ -40,7 +40,7 @@ public class DestroyServlet extends HttpServlet {
             em.getTransaction().commit();
             request.getSession().setAttribute("flush", "削除が完了しました。");
             em.close();
-            request.getSession().removeAttribute("message_id");
+            request.getSession().removeAttribute("Task_id");
             response.sendRedirect(request.getContextPath() + "/index");
         }
     }

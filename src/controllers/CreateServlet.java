@@ -53,7 +53,7 @@ public class CreateServlet extends HttpServlet {
                 em.close();
 
                 request.setAttribute("_token", request.getSession().getId());
-                request.setAttribute("message", m);
+                request.setAttribute("Task", m);
                 request.setAttribute("errors", errors);
 
                 RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/messages/new.jsp");

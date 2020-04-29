@@ -45,13 +45,13 @@ public class IndexServlet extends HttpServlet {
                                    .setMaxResults(15)
                                    .getResultList();
 
-        long messages_count = (long)em.createNamedQuery("gettasksCount", Long.class)
+        long Task_count = (long)em.createNamedQuery("gettasksCount", Long.class)
                                       .getSingleResult();
 
         em.close();
 
         request.setAttribute("Task", Task);
-        request.setAttribute("messages_count", messages_count);
+        request.setAttribute("Task_count", Task_count);
         request.setAttribute("page", page);
 
         if(request.getSession().getAttribute("flush") != null) {

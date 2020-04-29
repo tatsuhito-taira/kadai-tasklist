@@ -9,19 +9,19 @@
         </c:if>
         <h2>タスク一覧</h2>
         <ul>
-            <c:forEach var="message" items="${messages}">
+            <c:forEach var="Task" items="${Task}">
                 <li>
-                    <a href="${pageContext.request.contextPath}/show?id=${message.id}">
-                        <c:out value="${message.id}" />
+                    <a href="${pageContext.request.contextPath}/show?id=${Task.id}">
+                        <c:out value="${Task.id}" />
+                        :<c:out value="${Task.content}" />
                     </a>
-                    ：<c:out value="${message.title}"></c:out> &gt; <c:out value="${message.content}" />
                 </li>
             </c:forEach>
         </ul>
 
         <div id="pagination">
-            （全 ${messages_count} 件）<br />
-            <c:forEach var="i" begin="1" end="${((messages_count - 1) / 15) + 1}" step="1">
+            （全 ${Task_count} 件）<br />
+            <c:forEach var="i" begin="1" end="${((Task_count - 1) / 15) + 1}" step="1">
                 <c:choose>
                     <c:when test="${i == page}">
                         <c:out value="${i}" />&nbsp;
@@ -32,7 +32,7 @@
                 </c:choose>
             </c:forEach>
         </div>
-        <p><a href="${pageContext.request.contextPath}/new">新規タスクの投稿</a></p>
+        <p><a href="${pageContext.request.contextPath}/new">新規メッセージの投稿</a></p>
 
     </c:param>
 </c:import>
